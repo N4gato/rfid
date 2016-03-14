@@ -1,0 +1,9 @@
+c:\users\nagato\documents\visual studio 2015\Projects\rfid\rfid\bin\Debug\rfid.exe.config
+c:\users\nagato\documents\visual studio 2015\Projects\rfid\rfid\obj\Debug\rfid.csprojResolveAssemblyReference.cache
+c:\users\nagato\documents\visual studio 2015\Projects\rfid\rfid\obj\Debug\rfid.Form1.resources
+c:\users\nagato\documents\visual studio 2015\Projects\rfid\rfid\obj\Debug\rfid.Properties.Resources.resources
+c:\users\nagato\documents\visual studio 2015\Projects\rfid\rfid\obj\Debug\rfid.csproj.GenerateResource.Cache
+c:\users\nagato\documents\visual studio 2015\Projects\rfid\rfid\bin\Debug\rfid.exe
+c:\users\nagato\documents\visual studio 2015\Projects\rfid\rfid\bin\Debug\rfid.pdb
+c:\users\nagato\documents\visual studio 2015\Projects\rfid\rfid\obj\Debug\rfid.exe
+c:\users\nagato\documents\visual studio 2015\Projects\rfid\rfid\obj\Debug\rfid.pdb

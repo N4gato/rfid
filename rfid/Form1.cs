@@ -14,6 +14,7 @@ namespace rfid
 {
     public partial class Form1 : Form
     {
+        delegate void addItemCallback(string id); // creati delegate , 
         public Form1() //constructer
         {
             InitializeComponent();
@@ -23,18 +24,37 @@ namespace rfid
             rf.DataReceived += Rf_DataReceived;
             //  Rf_DataReceived is a methode here. if its in another class. instance that class and call it
 
-            // rf.startCommuniation();
+            rf.startCommuniation();
+            // rf.stopCommuniation();
 
-            
-           
+
+
+
+
         }
 
-        private void Rf_DataReceived(object source, string tagid)
+        private void Rf_DataReceived(object source, byte[] tagId )
         {
-            throw new NotImplementedException();
-           // label1.Text = "Im from the on receied in form";
+            // label1.Text = "Im from the on receied in form";
             //send it to data bae or file....
+            string datas="";
+            for (int i = 5; i < 10; i++) {
+                datas +=tagId[i].ToString("X");
+            }
+            Console.WriteLine(datas);
+            addItemCallback aic = new addItemCallback(addItem);
+            this.Invoke(aic, datas); // because add item 
+        }
 
+        void addItem(string id)
+        {
+            ListViewItem lvi = new ListViewItem("1");
+            lvi.SubItems.Add(id);
+            lvi.SubItems.Add("12/16/2016");
+            lvi.SubItems.Add("Rabat");
+            lvi.SubItems.Add("OUt");
+            //listView1.Items.Clear();
+            listView1.Items.Add(lvi);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -49,7 +69,7 @@ namespace rfid
                 lvi.SubItems.Add(reader["Date"].ToString());
                 lvi.SubItems.Add(reader["Destination"].ToString());
                 lvi.SubItems.Add(reader["Status"].ToString());
-
+                listView1.Items.Clear();
                 listView1.Items.Add(lvi);
 
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
@@ -8,65 +9,80 @@ using System.Threading.Tasks;
 
 namespace rfid
 {
-    
-    class RfidSerial{
-
-        public delegate void DataReceivedHandler(Object source,string tagid);
-        public event DataReceivedHandler DataReceived;
-        private Thread t = new Thread(run);
+    class RfidSerial
+    {
         public static readonly byte[] READ_TAG = { 0xa0, 0x03, 0x82, 0x00, 0xdb };
-        static SerialPort serialport;
+        public static readonly byte[] NO_TAG_RESP = { 0xe4, 0x04, 0x82, 0x00, 0x05, 0x91 };
+
+        Queue<byte> data = new Queue<byte>();
+        //byte[] data = new byte[256];
+        int counter = 0;
+
+        public delegate void DataReceivedHandler(Object source, byte[] tagid);
+        public event DataReceivedHandler DataReceived;
+        private SerialPort serialport;
+        private System.Windows.Forms.Timer timer;
+
+        public RfidSerial()
+        {
+            serialport = new SerialPort("COM3");
+            serialport.DataReceived += Serialport_DataReceived;
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 300;
+            timer.Tick += Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            serialport.Write(READ_TAG, 0, READ_TAG.Length);
+        }
+
+        private void Serialport_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            for (int i = 0; i < serialport.BytesToRead; i++)
+            {
+                data.Enqueue((byte)serialport.ReadByte());
+            }
+            while (data.Count > 0)
+            {
+                if (data.Peek() == 0xe0)
+                {
+                    if (data.Count >= 18)
+                    {
+                        counter = 0;
+                        /*string sdata = "";
+                        for (int j = 0; j < 18; j++)
+                            sdata += data[j].ToString("X");*/
+                        byte[] d = new byte[18];
+                        for (int j = 0; j < 18; j++)
+                            d[j] = data.Dequeue();  
+                        this.DataReceived(this, d);
+                    }
+                    else break;
+                }
+                else if (data.Peek() == 0xe0)
+                {
+                    if (data.Count >= NO_TAG_RESP.Length)
+                    {
+                        for (int j = 0; j < NO_TAG_RESP.Length; j++)
+                            data.Dequeue();
+                    }
+                    else break;
+                }
+                else data.Dequeue();
+            }
+        }
 
         public void startCommuniation()
         {
-            t = new Thread(run);
-            t.Start();
+            serialport.Open();
+            timer.Start();
         }
 
         public void stopCommuniation()
         {
-            t.Join();
-            t.Interrupt();
+            timer.Stop();
+            serialport.Close();
         }
-
-
-        static void run()
-        {
-            serialport = new SerialPort();
-            serialport.PortName = "COM4";
-            //timeout to wait for respond
-            serialport.ReadTimeout = 3000;
-            byte[] data = new byte[20];
-            try
-            {
-                serialport.Open();
-            }
-            catch { }
-            while (serialport.IsOpen) {
-                //ask the reader to read tag.
-                serialport.Write(READ_TAG, 0, READ_TAG.Length);
-                try{
-                    for (int i = 0; i < 17; i++)
-                        data[i] = (byte)serialport.ReadByte();
-
-                    //traitement de donnee//
-                    string id = "";
-                    RfidSerial rf = new RfidSerial();
-                    rf.OnDataReveived(id);
-                    Thread.Sleep(100);
-                }
-                catch (TimeoutException) { }//check if time out counter = 3000 is dead
-            }
-
-            if (serialport.IsOpen)
-                serialport.Close();
-        }
-
-        public virtual void OnDataReveived(String tagId) {
-            if (DataReceived != null) ;
-                DataReceived(this , tagId);
-        }
-        
-
     }
 }

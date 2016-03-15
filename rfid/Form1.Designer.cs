@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button23 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox36 = new System.Windows.Forms.GroupBox();
             this.label62 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
@@ -46,28 +45,9 @@
             this.button24 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox36.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button23
-            // 
-            this.button23.Location = new System.Drawing.Point(659, -58);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(153, 30);
-            this.button23.TabIndex = 11;
-            this.button23.Text = "指 定 搜 索";
-            this.button23.UseVisualStyleBackColor = true;
-            // 
-            // button21
-            // 
-            this.button21.Location = new System.Drawing.Point(659, -110);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(153, 30);
-            this.button21.TabIndex = 9;
-            this.button21.Text = "搜        索";
-            this.button21.UseVisualStyleBackColor = true;
             // 
             // listView1
             // 
@@ -108,6 +88,10 @@
             // 
             this.columnHeader4.Text = "Destination";
             this.columnHeader4.Width = 174;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Status";
             // 
             // groupBox36
             // 
@@ -217,10 +201,6 @@
             this.button2.Text = "Sumbit to database";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Status";
-            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(646, 259);
@@ -229,12 +209,13 @@
             this.button3.TabIndex = 17;
             this.button3.Text = "Read History";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(832, 651);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button26);
@@ -242,8 +223,6 @@
             this.Controls.Add(this.button24);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button23);
-            this.Controls.Add(this.button21);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupBox36);
             this.ForeColor = System.Drawing.SystemColors.GrayText;
@@ -271,8 +250,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button24;

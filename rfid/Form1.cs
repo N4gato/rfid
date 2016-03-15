@@ -52,7 +52,7 @@ namespace rfid
             lvi.SubItems.Add(id);
             lvi.SubItems.Add("12/16/2016");
             lvi.SubItems.Add("Rabat");
-            lvi.SubItems.Add("OUt");
+            lvi.SubItems.Add("Out");
             //listView1.Items.Clear();
             listView1.Items.Add(lvi);
         }

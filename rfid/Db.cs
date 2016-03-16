@@ -12,7 +12,8 @@ namespace rfid
     {
 
         SqlConnection cn;
-        
+       delegate void addItemCallback(string id); // creati delegate 
+
 
         public Db() {
             // constructer connect to db
@@ -34,6 +35,52 @@ namespace rfid
             return reader;
             
         }
-        
+
+        public SqlDataReader getlastId() {
+            SqlCommand cm = new SqlCommand("SELECT Id FROM Tag ORDER BY Id DESC ", this.cn);
+            SqlDataReader lastId = cm.ExecuteReader();
+            // reader.Close();
+            return lastId;
+        }
+
+
+        public void storeId(Object source, byte[] tagId) {
+            string datas = "";
+            for (int i = 5; i < 10; i++)
+                datas += tagId[i].ToString("X");
+
+           // addItemCallback aic = new addItemCallback(addItem); //init the delegate 
+            //this.Invoke(aic, datas); // this tread please invoke or take controle of datas that belong to other thread 
+            ////with my methode Additem
+            string date = System.DateTime.Now.ToString();
+
+            SqlCommand prikaz = new SqlCommand("INSERT INTO Tag(TagId,Date,Destination,Status) values(@TagId,@Date,@Destination,@Status)", this.cn);
+
+            prikaz.Parameters.AddWithValue("@TagId", datas);
+            prikaz.Parameters.AddWithValue("@Date", date);
+            prikaz.Parameters.AddWithValue("@Destination", "Rabat");
+            prikaz.Parameters.AddWithValue("@Status", "Out");
+            //cn.Open();
+            try {
+                // code here
+                prikaz.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                if (ex is SqlException)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                else {
+                    // Handle generic ones here.
+                }
+            }
+
+
+
+        }
+
+
+
     }
 }

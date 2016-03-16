@@ -77,12 +77,12 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Tag ID";
-            this.columnHeader2.Width = 216;
+            this.columnHeader2.Width = 153;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Date";
-            this.columnHeader3.Width = 102;
+            this.columnHeader3.Width = 166;
             // 
             // columnHeader4
             // 
@@ -164,6 +164,7 @@
             this.button26.TabIndex = 16;
             this.button26.Text = "Clear all";
             this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
             // 
             // button25
             // 
@@ -182,6 +183,7 @@
             this.button24.TabIndex = 14;
             this.button24.Text = "remove Selected";
             this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
             // button1
             // 

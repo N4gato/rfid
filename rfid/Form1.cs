@@ -14,23 +14,21 @@ namespace rfid
 {
     public partial class Form1 : Form
     {
-        delegate void addItemCallback(string id); // creati delegate , 
+        delegate void addItemCallback(string id); // creati delegate 
+        int LatsId = 0;
         public Form1() //constructer
         {
             InitializeComponent();
             //initiate the tag reader from serial
             RfidSerial rf = new RfidSerial();
+            Db db = new Db();
             //subscribe to event
             rf.DataReceived += Rf_DataReceived;
+            rf.DataReceived += db.storeId;
             //  Rf_DataReceived is a methode here. if its in another class. instance that class and call it
 
             rf.startCommuniation();
             // rf.stopCommuniation();
-
-
-
-
-
         }
 
         private void Rf_DataReceived(object source, byte[] tagId )
@@ -41,24 +39,40 @@ namespace rfid
             for (int i = 5; i < 10; i++) {
                 datas +=tagId[i].ToString("X");
             }
-            Console.WriteLine(datas);
-            addItemCallback aic = new addItemCallback(addItem);
-            this.Invoke(aic, datas); // because add item 
+            //Console.WriteLine(datas);
+            addItemCallback aic = new addItemCallback(addItem); //init the delegate 
+            this.Invoke(aic, datas); // this tread please invoke or take controle of datas that belong to other thread 
+            //with my methode Additem
+
+            //this.Invoke is like : take my methode addItem and give to it 
         }
 
         void addItem(string id)
         {
+            //Db db = new Db();
+            //SqlDataReader lastId = db.getlastId();
+            //lastId.Read();
+            //int lastID = (int) lastId["Id"];
+            //ListViewItem lvi = new ListViewItem((lastID + 1 ).ToString());
             ListViewItem lvi = new ListViewItem("1");
             lvi.SubItems.Add(id);
-            lvi.SubItems.Add("12/16/2016");
+            lvi.SubItems.Add(System.DateTime.Now.ToString());
             lvi.SubItems.Add("Rabat");
             lvi.SubItems.Add("Out");
             //listView1.Items.Clear();
             listView1.Items.Add(lvi);
         }
 
+        //public void setLastId() {
+        //    Db db = new Db();
+        //    SqlDataReader lastId = db.getlastId();
+        //    lastId.Read();
+        //    int lastID = (int)lastId["Id"];
+        //}
+
         private void button3_Click(object sender, EventArgs e)
         {
+            
             Db db = new Db();
             SqlDataReader reader = db.dbGet();
 
@@ -69,7 +83,7 @@ namespace rfid
                 lvi.SubItems.Add(reader["Date"].ToString());
                 lvi.SubItems.Add(reader["Destination"].ToString());
                 lvi.SubItems.Add(reader["Status"].ToString());
-                listView1.Items.Clear();
+               // listView1.Items.Clear();
                 listView1.Items.Add(lvi);
 
             }
@@ -95,6 +109,14 @@ namespace rfid
 
         }
 
+        private void button26_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
 
+        private void button24_Click(object sender, EventArgs e)
+        {
+            //removeselected
+        }
     }
 }

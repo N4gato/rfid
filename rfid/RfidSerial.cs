@@ -13,7 +13,7 @@ namespace rfid
     {
         public static readonly byte[] READ_TAG = { 0xa0, 0x03, 0x82, 0x00, 0xdb };
         public static readonly byte[] NO_TAG_RESP = { 0xe4, 0x04, 0x82, 0x00, 0x05, 0x91 };
-
+        // we create the queue
         Queue<byte> data = new Queue<byte>();
         //byte[] data = new byte[256];
         int counter = 0;
@@ -27,8 +27,9 @@ namespace rfid
         {
             serialport = new SerialPort("COM3");
             serialport.DataReceived += Serialport_DataReceived;
+           // serialport.DataReceived += Db.
             timer = new System.Windows.Forms.Timer();
-            timer.Interval = 300;
+            timer.Interval = 1000;
             timer.Tick += Timer_Tick;
         }
 

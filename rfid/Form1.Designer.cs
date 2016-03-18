@@ -144,7 +144,8 @@
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(342, 13);
             this.label59.TabIndex = 1;
-            this.label59.Text = "Add Selected to database: allow you to add a specific item to database";
+            this.label59.Text = "Delete from database: allow you to delete a specific item from database";
+            this.label59.Click += new System.EventHandler(this.label59_Click);
             // 
             // label58
             // 
@@ -191,8 +192,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(153, 30);
             this.button1.TabIndex = 13;
-            this.button1.Text = "Add selected to database";
+            this.button1.Text = "Delete from database";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 

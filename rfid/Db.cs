@@ -75,9 +75,27 @@ namespace rfid
                     // Handle generic ones here.
                 }
             }
+        }
 
+        public void deletItem(string id)
+        {
+            SqlCommand prikaz = new SqlCommand("DELETE FROM Tag WHERE Id = "+id, this.cn);
 
-
+            try
+            {
+                // code here
+                prikaz.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                if (ex is SqlException)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                else {
+                    // Handle generic ones here.
+                }
+            }
         }
 
 

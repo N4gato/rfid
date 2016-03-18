@@ -117,6 +117,35 @@ namespace rfid
         private void button24_Click(object sender, EventArgs e)
         {
             //removeselected
+            if (listView1.SelectedItems.Count == 0) {
+                MessageBox.Show("Select an item");
+            }else listView1.SelectedItems[0].Remove();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Select an item");
+                return;
+            }
+             
+                string Iditem =  listView1.SelectedItems[0].SubItems[0].Text ;
+            if (Iditem == "1") {
+                MessageBox.Show("Delete this item from History");
+                return;
+            }
+            //delet from da with id = Iditem
+            Db db = new Db();
+            db.deletItem(Iditem);
+            listView1.SelectedItems[0].Remove();
+
+
+        }
+
+        private void label59_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

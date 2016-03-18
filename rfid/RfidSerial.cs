@@ -29,7 +29,7 @@ namespace rfid
             serialport.DataReceived += Serialport_DataReceived;
            // serialport.DataReceived += Db.
             timer = new System.Windows.Forms.Timer();
-            timer.Interval = 1000;
+            timer.Interval = 300;
             timer.Tick += Timer_Tick;
         }
 

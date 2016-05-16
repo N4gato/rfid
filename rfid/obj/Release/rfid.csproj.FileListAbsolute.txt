@@ -1,9 +1,9 @@
-C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\bin\Release\rfid.exe.config
-C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\bin\Release\rfid.exe
-C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\bin\Release\rfid.pdb
 C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\obj\Release\rfid.csprojResolveAssemblyReference.cache
 C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\obj\Release\rfid.Form1.resources
 C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\obj\Release\rfid.Properties.Resources.resources
 C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\obj\Release\rfid.csproj.GenerateResource.Cache
-C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\obj\Release\rfid.exe
-C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\obj\Release\rfid.pdb
+C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\bin\Release\Desktop RFID.exe.config
+C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\bin\Release\Desktop RFID.exe
+C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\bin\Release\Desktop RFID.pdb
+C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\obj\Release\Desktop RFID.exe
+C:\Users\Nagato\Documents\Visual Studio 2015\Projects\rfid\rfid\obj\Release\Desktop RFID.pdb

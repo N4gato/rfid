@@ -25,7 +25,11 @@ namespace rfid
 
         public RfidSerial()
         {
-            serialport = new SerialPort("COM3");
+            string[] ports = SerialPort.GetPortNames();
+            // Display each port name to the console.
+            
+
+            serialport = new SerialPort(ports[0]);
             serialport.DataReceived += Serialport_DataReceived;
            // serialport.DataReceived += Db.
             timer = new System.Windows.Forms.Timer();
